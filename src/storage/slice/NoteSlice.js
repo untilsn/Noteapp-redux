@@ -9,52 +9,33 @@ export const noteSlice = createSlice({
     // add cardnote
     addNote: (state, action) => {
       const noteItem = action.payload;
-      return {
-        ...state,
-        notes: [...state.notes, noteItem],
-      };
+      state.notes.push(noteItem);
     },
     // add note
     valueNote: (state, action) => {
-      return {
-        ...state,
-        notes: state.notes.map((item) =>
-          item.id === action.payload.id ? action.payload : item
-        ),
-      };
+      const updatedNote = action.payload;
+      const index = state.notes.findIndex((note) => note.id === updatedNote.id);
+      if (index !== -1) {
+        state.notes[index] = updatedNote;
+      }
     },
     // delete note
     deleteNote: (state, action) => {
       const noteId = action.payload;
-      return {
-        ...state,
-        notes: state.notes.filter((item) => item.id !== noteId),
-      };
+      state.notes = state.notes.filter((note) => note.id !== noteId);
     },
-    // add favorite note
-    addFavorite: (state, action) => {
-      const favoriteNoteId = action.payload;
-      const favoriteNoteIndex = state.notes.findIndex(
-        (note) => note.id === favoriteNoteId
-      );
-      if (favoriteNoteIndex !== -1) {
-        const favoriteNote = state.notes[favoriteNoteIndex];
-        const updatedNotes = [
-          favoriteNote,
-          ...state.notes.slice(0, favoriteNoteIndex),
-          ...state.notes.slice(favoriteNoteIndex + 1),
-        ];
-        return {
-          ...state,
-          notes: updatedNotes,
-        };
+    // toggle favorite
+    toggleFavorite: (state, action) => {
+      const noteId = action.payload;
+      const noteToUpdate = state.notes.find((note) => note.id === noteId);
+      if (noteToUpdate) {
+        noteToUpdate.pin = !noteToUpdate.pin;
       }
-      return state; // Trả về state không thay đổi nếu không tìm thấy ghi chú yêu thích
     },
   },
 });
 
-export const { addNote, valueNote, deleteNote, addFavorite } =
+export const { addNote, valueNote, deleteNote, toggleFavorite } =
   noteSlice.actions;
 
 export default noteSlice.reducer;

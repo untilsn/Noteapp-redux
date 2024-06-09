@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addFavorite, deleteNote } from "../storage/slice/NoteSlice";
+import { deleteNote, toggleFavorite } from "../storage/slice/NoteSlice";
+import { addFavorite } from "../storage/slice/FavoriteSlice";
 
-const Feature = ({ idNote }) => {
+const Feature = ({ idNote, item }) => {
   const dispatch = useDispatch();
   function handleIdNote() {
     dispatch(deleteNote(idNote));
   }
   function handleFavorite() {
-    dispatch(addFavorite(idNote));
+    dispatch(toggleFavorite(idNote));
   }
   return (
     <div className="absolute">

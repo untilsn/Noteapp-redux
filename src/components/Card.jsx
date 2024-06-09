@@ -89,7 +89,11 @@ const Card = ({ card, index }) => {
               d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z"
             />
           </svg>
-          {displayFeature ? <Feature idNote={card.id}></Feature> : ""}
+          {displayFeature ? (
+            <Feature item={card} idNote={card.id}></Feature>
+          ) : (
+            ""
+          )}
         </div>
 
         <div className="flex gap-5 text-lg font-semibold text-opacity-80">

@@ -9,7 +9,7 @@ const Sidebar = () => {
   const handleAdd = () => {
     const data = {
       id: v4(),
-      favorite: false,
+      pin: false,
       title: "",
       desc: "",
       createAt: Date.now(),
@@ -22,6 +22,7 @@ const Sidebar = () => {
     <div className="max-w-[120px] w-full flex flex-col gap-10 items-center h-[80vh] border-r border-gray-300 sticky top-[80px]">
       <Button onClick={handleAdd}></Button>
       <ul className="flex flex-col gap-10">
+        <div className="rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 w-7 h-7"></div>
         <li className="bg-[#f6e7bb] rounded-full w-7 h-7"></li>
         <li className="bg-[#f7c281] rounded-full w-7 h-7"></li>
         <li className="bg-[#a2e2f1] rounded-full w-7 h-7"></li>

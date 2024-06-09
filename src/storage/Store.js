@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import noteSlice from "./slice/NoteSlice";
+import favoriteSlice from "./slice/FavoriteSlice";
 
 // const reducer = combineReducers({
 //   note: noteSlice,
@@ -13,6 +14,7 @@ import noteSlice from "./slice/NoteSlice";
 
 const reducer = combineReducers({
   note: noteSlice,
+  favorite: favoriteSlice,
 });
 
 const persistConfig = {
